@@ -55,3 +55,15 @@ jobs:
         run: |
           cd "Lab Work №5/src/frontend"
           npm test -- --watchAll=false --passWithNoTests
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run Postman Tests
+        run: newman run tests/postman_collection.json --reporters cli,junit --reporter-junit-export results.xml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: postman-test-results
+          path: results.xml
