@@ -18,6 +18,7 @@ jobs:
 
       - name: Set up Docker Compose
         run: |
+          cd "Lab Work №5/src/backend"
           docker compose up -d  # Запускаем контейнеры в фоне
           sleep 10  # Даем время на запуск бэкенда и базы данных
 
