@@ -20,7 +20,7 @@ jobs:
         run: |
           cd "Lab Work №5/src/backend"
           docker compose up -d  # Запускаем контейнеры в фоне
-          sleep 10  # Даем время на запуск бэкенда и базы данных
+          sleep 25  # Даем время на запуск бэкенда и базы данных
 
       - name: Install Newman
         run: npm install -g newman
