@@ -23,7 +23,7 @@ jobs:
 
       - name: Install backend dependencies
         run: |
-          cd Lab Work №5/src/backend
+          cd Lab_Work_№5/src/backend
           python -m venv .venv
           source .venv/bin/activate
           pip install --upgrade pip
@@ -31,13 +31,13 @@ jobs:
 
       - name: Run Django migrations
         run: |
-          cd Lab Work №5/src/backend
+          cd Lab_Work_№5/src/backend
           source .venv/bin/activate
           python manage.py migrate
 
       - name: Run Django tests
         run: |
-          cd Lab Work №5/src/backend
+          cd Lab_Work_№5/src/backend
           source .venv/bin/activate
           python manage.py test
 
@@ -48,10 +48,10 @@ jobs:
 
       - name: Install frontend dependencies
         run: |
-          cd Lab Work №5/src/frontend
+          cd Lab_Work_№5/src/frontend
           npm install
 
       - name: Run React tests
         run: |
-          cd Lab Work №5/src/frontend
+          cd Lab_Work_№5/src/frontend
           npm test -- --watchAll=false
