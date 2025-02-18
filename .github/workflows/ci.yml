@@ -21,6 +21,11 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Download database
+        run: |
+          mkdir -p "Lab Work №5/src/backend"  # Создаем папку, если её нет
+          wget "https://raw.githubusercontent.com/Clonn123/Software-Systems-Architecture-Design/main/Lab%20Work%20№5/src/backend/db.sqlite3" -O "Lab Work №5/src/backend/db.sqlite3"
+
       - name: Install backend dependencies
         run: |
           cd "Lab Work №5/src/backend"
