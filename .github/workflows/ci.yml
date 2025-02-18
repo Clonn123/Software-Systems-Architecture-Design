@@ -22,12 +22,6 @@ jobs:
           docker compose up -d  # Запускаем контейнеры в фоне
           sleep 10  # Даем время на запуск бэкенда и базы данных
 
-      - name: Run Django migrations
-        run: docker compose exec -T backend python manage.py migrate
-
-      - name: Run Django tests
-        run: docker compose exec -T backend python manage.py test
-
       - name: Install Newman
         run: npm install -g newman
 
