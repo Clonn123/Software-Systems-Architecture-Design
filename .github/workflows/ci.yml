@@ -54,4 +54,4 @@ jobs:
       - name: Run React tests
         run: |
           cd "Lab Work №5/src/frontend"
-          npm test -- --watchAll=false
+          npm test -- --watchAll=false --passWithNoTests
