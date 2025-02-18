@@ -23,7 +23,7 @@ jobs:
 
       - name: Download database
         run: |
-          mkdir -p "Lab Work №5/src/backend"  # Создаем папку, если её нет
+          mkdir -p "Lab Work №5/src/backend"
           wget "https://github.com/Clonn123/Software-Systems-Architecture-Design/blob/415780483ed291a2212a9147da1edcb9cceb4dc3/Lab%20Work%20%E2%84%965/src/backend/db.sqlite3" -O "Lab Work №5/src/backend/db.sqlite3"
 
 
@@ -50,6 +50,13 @@ jobs:
         run: |
           cd "Lab Work №5/src/frontend"
           npm install
+
+      - name: Start Django backend
+        run: |
+          cd "Lab Work №5/src/backend"
+          source .venv/bin/activate
+          python manage.py runserver 0.0.0.0:8000 &
+          sleep 5
 
       - name: Run React tests
         run: |
