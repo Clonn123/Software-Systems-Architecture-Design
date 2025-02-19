@@ -58,11 +58,11 @@ jobs:
           cd "Lab Work №5/src"
           docker compose up -d
 
+      - name: Check logs
+        run: docker compose logs backend  # Посмотреть, запустился ли сервер
+
       - name: Wait for services to be ready
         run: sleep 300  # Ждём поднятия сервера
-
-      - name: Check logs
-        run: docker-compose logs backend  # Посмотреть, запустился ли сервер
 
       - name: Run React tests
         run: |
