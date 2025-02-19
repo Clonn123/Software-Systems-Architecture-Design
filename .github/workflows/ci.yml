@@ -56,7 +56,7 @@ jobs:
       - name: Start Docker containers
         run: |
           cd "Lab Work №5/src"
-          docker-compose up -d
+          docker compose up -d
 
       - name: Wait for services to be ready
         run: sleep 10  # Ждём поднятия сервера
