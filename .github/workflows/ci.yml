@@ -58,9 +58,6 @@ jobs:
           cd "Lab Work №5/src"
           docker compose up -d
 
-      - name: Wait for services to be ready
-        run: sleep 300  # Ждём поднятия сервера
-
       - name: Run React tests
         run: |
           cd "Lab Work №5/src/frontend"

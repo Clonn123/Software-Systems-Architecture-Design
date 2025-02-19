@@ -50,7 +50,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/login/",
+					"raw": "{{base_url}}/api/login/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -110,7 +110,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/login/",
+					"raw": "{{base_url}}/api/login/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -168,7 +168,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/1/",
+					"raw": "{{base_url}}/api/user/1/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -228,7 +228,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/rec/manga/?id_user=1&pageNumber=1&method=CBF",
+					"raw": "{{base_url}}/api/rec/manga/?id_user=1&pageNumber=1&method=CBF",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -317,7 +317,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/data/mylist-manga/1/-score/",
+					"raw": "{{base_url}}/api/data/mylist-manga/1/-score/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -392,7 +392,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/score-manga/",
+					"raw": "{{base_url}}/api/score-manga/",
 					"protocol": "http",
 					"host": [
 						"127",
