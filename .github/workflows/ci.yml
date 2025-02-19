@@ -51,7 +51,7 @@ jobs:
           npm install
 
       - name: Set up Docker
-        uses: docker/setup-buildx-action@v2  # ✅ Официальный способ установить Docker
+        uses: docker/setup-buildx-action@v2
 
       - name: Start Docker containers
         run: |
@@ -59,7 +59,10 @@ jobs:
           docker compose up -d
 
       - name: Wait for services to be ready
-        run: sleep 10  # Ждём поднятия сервера
+        run: sleep 300  # Ждём поднятия сервера
+
+      - name: Check logs
+        run: docker-compose logs backend  # Посмотреть, запустился ли сервер
 
       - name: Run React tests
         run: |
