@@ -16,23 +16,61 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Docker Compose
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Download database
+        run: |
+          mkdir -p "Lab Work №5/src/backend"  # Создаем папку, если её нет
+          wget "https://github.com/Clonn123/Software-Systems-Architecture-Design/blob/415780483ed291a2212a9147da1edcb9cceb4dc3/Lab%20Work%20%E2%84%965/src/backend/db.sqlite3" -O "Lab Work №5/src/backend/db.sqlite3"
+
+      - name: Install backend dependencies
         run: |
           cd "Lab Work №5/src/backend"
-          docker compose up -d  # Запускаем контейнеры в фоне
-          sleep 25  # Даем время на запуск бэкенда и базы данных
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Django tests
+        run: |
+          cd "Lab Work №5/src/backend"
+          source .venv/bin/activate
+          python manage.py test
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install frontend dependencies
+        run: |
+          cd "Lab Work №5/src/frontend"
+          npm install
+
+      - name: Start Docker containers
+        run: |
+          cd "Lab Work №5/src"
+          docker-compose up -d
+
+      - name: Wait for services to be ready
+        run: sleep 10  # Ждём поднятия сервера
+
+      - name: Run React tests
+        run: |
+          cd "Lab Work №5/src/frontend"
+          npm test -- --watchAll=false --passWithNoTests
 
       - name: Install Newman
         run: npm install -g newman
 
       - name: Run Postman Tests
-        run: docker compose exec -T backend newman run /app/tests/postman_collection.json --reporters cli,junit --reporter-junit-export results.xml
+        run: newman run tests/postman_collection.json --reporters cli,junit --reporter-junit-export results.xml
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
           name: postman-test-results
           path: results.xml
-
-      - name: Stop and remove Docker containers
-        run: docker compose down
