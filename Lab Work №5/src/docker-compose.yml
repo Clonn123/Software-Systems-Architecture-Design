@@ -5,6 +5,11 @@ services:
     build: ./backend
     ports:
       - "8000:8000"
+    network_mode: "host"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://backend:8000/"]
+      interval: 5s
+      retries: 5
     volumes:
       - ./backend:/app
       - ./backend/db.sqlite3:/app/db.sqlite3  # Монтируем базу
