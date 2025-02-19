@@ -70,7 +70,7 @@ jobs:
         run: npm install -g newman
 
       - name: Run Postman Tests
-        run: newman run tests/postman_collection.json --reporters cli,junit --reporter-junit-export results.xml
+        run: newman run tests/postman_collection.json --env-var base_url="http://backend:8000" --reporters cli,junit --reporter-junit-export results.xml
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
