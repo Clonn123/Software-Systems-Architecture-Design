@@ -50,6 +50,9 @@ jobs:
           cd "Lab Work №5/src/frontend"
           npm install
 
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2  # ✅ Официальный способ установить Docker
+
       - name: Start Docker containers
         run: |
           cd "Lab Work №5/src"
