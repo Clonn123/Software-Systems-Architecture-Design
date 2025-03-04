@@ -53,7 +53,7 @@
 					"raw": "{{base_url}}/api/login/",
 					"protocol": "http",
 					"host": [
-						"backend"
+						"src-backend-1"
 					],
 					"port": "8000",
 					"path": [
@@ -110,7 +110,7 @@
 					"raw": "{{base_url}}/api/login/",
 					"protocol": "http",
 					"host": [
-						"backend"
+						"src-backend-1"
 					],
 					"port": "8000",
 					"path": [
@@ -165,7 +165,7 @@
 					"raw": "{{base_url}}/api/user/1/",
 					"protocol": "http",
 					"host": [
-						"backend"
+						"src-backend-1"
 					],
 					"port": "8000",
 					"path": [
@@ -222,7 +222,7 @@
 					"raw": "{{base_url}}/api/rec/manga/?id_user=1&pageNumber=1&method=CBF",
 					"protocol": "http",
 					"host": [
-						"backend"
+						"src-backend-1"
 					],
 					"port": "8000",
 					"path": [
@@ -308,7 +308,7 @@
 					"raw": "{{base_url}}/api/data/mylist-manga/1/-score/",
 					"protocol": "http",
 					"host": [
-						"backend"
+						"src-backend-1"
 					],
 					"port": "8000",
 					"path": [
@@ -380,7 +380,7 @@
 					"raw": "{{base_url}}/api/score-manga/",
 					"protocol": "http",
 					"host": [
-						"backend"
+						"src-backend-1"
 					],
 					"port": "8000",
 					"path": [
