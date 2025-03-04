@@ -58,6 +58,11 @@ jobs:
           cd "Lab Work №5/src"
           docker compose up -d
 
+      - name: Start Docker containers
+        run: |
+          docker-compose down
+          docker-compose up
+
       - name: Debug Docker containers
         run: docker ps -a
 
