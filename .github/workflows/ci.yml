@@ -58,14 +58,14 @@ jobs:
           cd "Lab Work №5/src"
           docker compose up -d
 
-      - name: Wait for backend to be ready
-        run: |
-          echo "Waiting for backend to start..."
-          until curl -s http://backend:8000/api/login/; do
-            sleep 2
-            echo "Still waiting..."
-          done
-          echo "Backend is up!"
+      # - name: Wait for backend to be ready
+      #   run: |
+      #     echo "Waiting for backend to start..."
+      #     until curl -s http://backend:8000/api/login/; do
+      #       sleep 2
+      #       echo "Still waiting..."
+      #     done
+      #     echo "Backend is up!"
       
       #- name: Restart Docker containers
       #  run: |
