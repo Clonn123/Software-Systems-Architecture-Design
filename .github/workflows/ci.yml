@@ -60,6 +60,7 @@ jobs:
 
       - name: Start Docker containers
         run: |
+          cd "Lab Work №5/src"
           docker compose down
           docker compose up
 
