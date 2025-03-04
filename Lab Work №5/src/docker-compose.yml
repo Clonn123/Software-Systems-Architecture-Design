@@ -5,6 +5,8 @@ services:
     build: ./backend
     ports:
       - "8000:8000"
+    networks:
+      - default
     #network_mode: "host"
     #docker ps -a
     #internal docker
@@ -21,5 +23,20 @@ services:
     build: ./frontend
     ports:
       - "3000:3000"
+    networks:
+      - default
     volumes:
       - ./frontend:/app
+
+  # newman:
+  #   image: postman/newman
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - default
+  #   volumes:
+  #     - ./tests:/etc/newman
+  #   command: >
+  #     run /etc/newman/postman_collection.json 
+  #     --env-var base_url="http://backend:8000" 
+  #     --reporters cli,junit
