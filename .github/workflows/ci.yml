@@ -61,7 +61,7 @@ jobs:
       - name: Wait for backend to be ready
         run: |
           echo "Waiting for backend to start..."
-          until curl -s http://src-backend-1:8000/api/login/; do
+          until curl -s http://backend:8000/api/login/; do
             sleep 2
             echo "Still waiting..."
           done
@@ -85,7 +85,7 @@ jobs:
         run: npm install -g newman
 
       - name: Run Postman Tests
-        run: newman run tests/postman_collection.json --env-var base_url="http://src-backend-1:8000" --reporters cli,junit --reporter-junit-export results.xml
+        run: newman run tests/postman_collection.json --env-var base_url="http://backend:8000" --reporters cli,junit --reporter-junit-export results.xml
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
