@@ -58,6 +58,9 @@ jobs:
           cd "Lab Work №5/src"
           docker compose up -d
 
+      - name: Debug Docker containers
+        run: docker ps -a
+
       - name: Run React tests
         run: |
           cd "Lab Work №5/src/frontend"
