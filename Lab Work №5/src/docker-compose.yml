@@ -28,6 +28,12 @@ services:
     volumes:
       - ./frontend:/app
 
+  newman:
+    image: postman/newman
+    depends_on:
+      - backend
+    command: run tests/postman_collection.json --env-var base_url="http://backend:8000"
+
   # newman:
   #   image: postman/newman
   #   depends_on:

@@ -60,6 +60,9 @@ jobs:
       
       - name: Debug Docker containers
         run: docker ps -a
+
+      - name: Check Docker Network
+        run: docker network inspect src_default
       
       - name: Wait for backend port
         run: |
