@@ -21,10 +21,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Download database
-        run: |
-          mkdir -p "Lab Work №5/src/backend"  # Создаем папку, если её нет
-          wget "https://github.com/Clonn123/Software-Systems-Architecture-Design/blob/415780483ed291a2212a9147da1edcb9cceb4dc3/Lab%20Work%20%E2%84%965/src/backend/db.sqlite3" -O "Lab Work №5/src/backend/db.sqlite3"
+      # - name: Download database
+      #   run: |
+      #     mkdir -p "Lab Work №5/src/backend"  # Создаем папку, если её нет
+      #     wget "https://github.com/Clonn123/Software-Systems-Architecture-Design/blob/415780483ed291a2212a9147da1edcb9cceb4dc3/Lab%20Work%20%E2%84%965/src/backend/db.sqlite3" -O "Lab Work №5/src/backend/db.sqlite3"
 
       - name: Install backend dependencies
         run: |
@@ -57,6 +57,16 @@ jobs:
         run: |
           cd "Lab Work №5/src"
           docker compose up -d
+      
+      - name: Debug Docker containers
+        run: docker ps -a
+      
+      - name: Wait for backend port
+        run: |
+          until nc -z backend 8000; do
+            echo "Waiting for backend..."
+            sleep 2
+          done
 
       # - name: Wait for backend to be ready
       #   run: |
@@ -73,9 +83,6 @@ jobs:
       #    docker compose down
       #    docker compose up
 
-      - name: Debug Docker containers
-        run: docker ps -a
-
       - name: Run React tests
         run: |
           cd "Lab Work №5/src/frontend"
@@ -85,7 +92,7 @@ jobs:
         run: npm install -g newman
 
       - name: Run Postman Tests
-        run: newman run tests/postman_collection.json --env-var base_url="http://localhost:8000" --reporters cli,junit --reporter-junit-export results.xml
+        run: newman run tests/postman_collection.json --env-var base_url="http://backend:8000" --reporters cli,junit --reporter-junit-export results.xml
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
