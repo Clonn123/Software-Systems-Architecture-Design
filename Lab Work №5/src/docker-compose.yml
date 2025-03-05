@@ -21,6 +21,7 @@ services:
 
 
   frontend:
+    container_name: frontend
     build: ./frontend
     ports:
       - "3000:3000"
@@ -33,7 +34,7 @@ services:
     image: postman/newman
     depends_on:
       - backend
-    command: run tests/postman_collection.json --env-var base_url="http://backend:8000"
+    command: run tests/postman_collection.json --env-var base_url="http://backend:8000" --reporters cli,junit
 
   # newman:
   #   image: postman/newman
