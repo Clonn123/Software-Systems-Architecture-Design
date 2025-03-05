@@ -31,6 +31,7 @@ services:
       - ./frontend:/app
 
   newman:
+    container_name: newman
     image: postman/newman
     depends_on:
       - backend
