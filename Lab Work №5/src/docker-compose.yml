@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  backend:
+    container_name: backend
+    build: ./backend
+    ports:
+      - "8000:8000"
+    networks:
+      - default
+    #network_mode: "host"
+    volumes:
+      - ./backend:/app
+      - ./backend/db.sqlite3:/app/db.sqlite3  # Монтируем базу
+    depends_on:
+      frontend:
+        condition: service_started  # frontend не должен блокировать запуск backend
+
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - default
+    volumes:
+      - ./frontend:/app
+
+  newman:
+    image: postman/newman
+    depends_on:
+      - backend
+    command: run tests/postman_collection.json --env-var base_url="http://backend:8000" --reporters cli results.xml

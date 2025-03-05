@@ -1,0 +1,77 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install backend dependencies
+        run: |
+          cd "Lab Work №5/src/backend"
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Django tests
+        run: |
+          cd "Lab Work №5/src/backend"
+          source .venv/bin/activate
+          python manage.py test
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install frontend dependencies
+        run: |
+          cd "Lab Work №5/src/frontend"
+          npm install
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Start Docker containers
+        run: |
+          cd "Lab Work №5/src"
+          docker compose up -d
+      
+      - name: Debug Docker containers
+        run: docker ps -a
+
+      - name: Check Docker Network
+        run: docker network inspect src_default
+
+      - name: Run React tests
+        run: |
+          cd "Lab Work №5/src/frontend"
+          npm test -- --watchAll=false --passWithNoTests
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run Postman Tests
+        run: newman run tests/postman_collection.json --env-var base_url="http://172.18.0.3:8000" --reporters cli,junit --reporter-junit-export results.xml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: postman-test-results
+          path: results.xml

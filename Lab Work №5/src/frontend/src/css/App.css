@@ -1,0 +1,34 @@
+/* @font-face {
+  font-family: 'KoreanCalligraphy';
+  src: url('./han-zi.ttf') format('truetype');
+} */
+/* @font-face {
+  font-family: 'NipponcyrBold';
+  src: url('./BleakChop.ttf') format('truetype');
+} */
+@font-face {
+  font-family: 'Shikamaru';
+  src: url('./Shikamaru.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Aoudax Cyrillic';
+  src: url('./aoudax-cyrillic.otf') format('truetype');
+}
+
+html, body {
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #eb283f, #e54e12, #e71111);
+  margin: 0 auto;
+}
+
+.light-theme {
+  --background-color: #98C1D9;
+}
+
+@import './DarkTheme.css';
+@import './LightTheme.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap')
