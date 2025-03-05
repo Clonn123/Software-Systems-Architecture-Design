@@ -9,12 +9,9 @@ services:
     networks:
       - default
     #network_mode: "host"
-    #docker ps -a
-    #internal docker
     volumes:
       - ./backend:/app
       - ./backend/db.sqlite3:/app/db.sqlite3  # Монтируем базу
-      #- ./tests/postman_collection.json:/app/postman_collection.json  # Монтируем Postman коллекцию
     depends_on:
       frontend:
         condition: service_started  # frontend не должен блокировать запуск backend
@@ -34,16 +31,3 @@ services:
     depends_on:
       - backend
     command: run tests/postman_collection.json --env-var base_url="http://backend:8000" --reporters cli results.xml
-
-  # newman:
-  #   image: postman/newman
-  #   depends_on:
-  #     - backend
-  #   networks:
-  #     - default
-  #   volumes:
-  #     - ./tests:/etc/newman
-  #   command: >
-  #     run /etc/newman/postman_collection.json 
-  #     --env-var base_url="http://backend:8000" 
-  #     --reporters cli,junit
