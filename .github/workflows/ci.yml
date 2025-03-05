@@ -64,12 +64,12 @@ jobs:
       - name: Check Docker Network
         run: docker network inspect src_default
       
-      - name: Wait for backend port
-        run: |
-          until nc -z backend 8000; do
-            echo "Waiting for backend..."
-            sleep 2
-          done
+      # - name: Wait for backend port
+      #   run: |
+      #     until nc -z backend 8000; do
+      #       echo "Waiting for backend..."
+      #       sleep 2
+      #     done
 
       # - name: Wait for backend to be ready
       #   run: |
@@ -95,7 +95,7 @@ jobs:
         run: npm install -g newman
 
       - name: Run Postman Tests
-        run: newman run tests/postman_collection.json --env-var base_url="http://backend:8000" --reporters cli,junit --reporter-junit-export results.xml
+        run: newman run tests/postman_collection.json --env-var base_url="http://172.18.0.3:8000" --reporters cli,junit --reporter-junit-export results.xml
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
